@@ -14,6 +14,8 @@ async function initMap() {
   map = new Map(document.getElementById("map"), {
     zoom: 10,
     center: position,
+    disableDefaultUI: true,
+    draggable: false,
     mapId: "Discover Map",
   });
 

@@ -26,7 +26,17 @@ body, html {
     width: 50%;
 }
 
-#initial-walkthrough {
+#overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75); /* Grayscale overlay with opacity */
+    pointer-events: none; /* Allows interactions with the map underneath */
+    mask-image: radial-gradient(circle at center, transparent 0, transparent 100px, black 150px); /* Circular mask */
+  }
 
+#initial-walkthrough {
     
 }
