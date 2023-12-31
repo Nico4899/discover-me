@@ -1,0 +1,32 @@
+/* Color Variables */
+:root {
+    --primary-dark-blue: #253746; /* Dark Blue */
+    --secondary-light-blue: #4E7AC7; /* Light Blue */
+    --accent-green: #52CC52; /* Green */
+    --neutral-gray: #888888; /* Gray */
+  }
+
+* {
+    margin: auto;
+    font-size: 14px;
+}
+
+body, html {
+    height: 100%;
+    width: 100%;
+    background-color: var(--primary-dark-blue); /* Dark Blue Background */
+    color: white; /* White Text */
+}
+
+#map {
+    position: absolute;
+    left: 0;
+    top: 0; 
+    height: 100%;
+    width: 50%;
+}
+
+#initial-walkthrough {
+
+    
+}
