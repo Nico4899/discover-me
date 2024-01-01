@@ -25,14 +25,30 @@
         
         <div class="initial-walkthrough">
             <h1 id="app-name">Discover Me</h1>
+        
             <div class="stepper">
-                <div class="step"><p>1</p>Set Location</div>
-                <div class="step"><p>2</p>Connect to Instagram</div>
-                <div class="step"><p>3</p>Check</div>
+                <div class="step" data-step="1">
+                    <span>1</span>Set Location
+                    <div class="instruction" id="step1-instruction">Step 1 Instructions...</div>
+                </div>
+                <div class="step" data-step="2">
+                    <span>2</span>Connect to Instagram
+                    <div class="instruction" id="step2-instruction">Step 2 Instructions...</div>
+                </div>
+                <div class="step" data-step="3">
+                    <span>3</span>Check
+                    <div class="instruction" id="step3-instruction">Step 3 Instructions...</div>
+                </div> 
+                
+                <div class="navigation-buttons">
+                    <button class="item" id="back-button">Back</button>
+                    <button class="item" id="next-button">Next</button>
+                </div>
             </div>
+
         </div>
         
-
+    
         <script>
             (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
               key: 'AIzaSyAjWRPsQOwP72WxUqU7Au4_TxTrPBeCjeI', // Use the API key from the config file
@@ -40,5 +56,6 @@
               // Add other bootstrap parameters as needed, using camel case.
             });
         </script>
+        <script src="./components/initialization/initialization.js"></script>
     </body>
 </html>
