@@ -28,13 +28,29 @@
         
             <div class="stepper">
                 <div class="step" data-step="1"><p>1</p>Set Location</div>
-                <div class="step" data-step="2"><p>2</p>Connect to Instagram           </div>
+                <div class="step" data-step="2"><p>2</p>Connect to Instagram</div>
                 <div class="step" data-step="3"><p>3</p>Check</div> 
             </div>
 
-            <div class="instruction" id="step1-instruction">Step 1 Instructions...</div>
-            <div class="instruction" id="step2-instruction">Step 2 Instructions...</div>
-            <div class="instruction" id="step3-instruction">Step 3 Instructions...</div>
+            <div class="instruction" id="step1-instruction">
+                <p>Search for a starting location in the world or select your current location</p>
+                <input type="text" placeholder="Enter a location" id="location-input">
+                <button id="current-location-btn">Use Current Location</button>
+            </div>
+            
+            <div class="instruction" id="step2-instruction">
+                <p>Connect with your Instagram profile to add your pictures to the map</p>
+                <button id="instagram-connect-btn">Connect to Instagram</button>
+                <div id="instagram-placeholder">Your Instagram profile info will appear here.</div>
+            </div>
+
+            <div class="instruction" id="step3-instruction">
+                <p>Check your data and begin your journey</p>
+                <div id="summary">Selected Location: <span id="selected-location">None</span></div>
+                <div id="instagram-summary">Connected Instagram: <span id="instagram-status">Not Connected</span></div>
+                <button id="start-journey-btn">Start Journey</button>
+            </div>
+
             
             <div class="navigation-buttons">
                 <button class="item" id="back-button">Back</button>

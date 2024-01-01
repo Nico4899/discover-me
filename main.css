@@ -81,12 +81,15 @@ body, html {
 .instruction {
     width: 80%; 
     height: 50%;
-    padding: 1rem;
     margin-top: 0.5rem;
     border-radius: 5px;
     color: white;
     border: 1px solid white;
     margin-bottom: 0.5rem;
+}
+
+.instruction > p {
+    font-size: 1.2rem;
 }
 
 .navigation-buttons {
@@ -125,7 +128,6 @@ body, html {
     padding: 0.5rem 1rem;
     margin: 0.5rem 0;
     background-color: var(--accent-green);
-    border: none;
     border-radius: 5px;
     color: white;
     cursor: pointer;
@@ -135,4 +137,54 @@ body, html {
     background-color: var(--neutral-gray);
     cursor: default;
 }
+
+#step1-instruction input, #step1-instruction button {
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid var(--secondary-light-blue);
+    background-color: white;
+    color: var(--primary-dark-blue);
+    cursor: pointer;
+}
+
+#step1-instruction button {
+    background-color: var(--accent-green);
+}
+
+#instagram-connect-btn {
+    background-color: #E1306C; /* Instagram color */
+    color: white;
+    padding: 0.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#instagram-placeholder {
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    background-color: white;
+    color: var(--primary-dark-blue);
+    border: 1px solid var(--neutral-gray);
+    border-radius: 5px;
+}
+
+#step3-instruction div {
+    margin-top: 0.5rem;
+    background-color: white;
+    color: var(--primary-dark-blue);
+    padding: 0.5rem;
+    border-radius: 5px;
+}
+
+#start-journey-btn {
+    margin-top: 1rem;
+    padding: 0.5rem;
+    background-color: var(--accent-green);
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
 
