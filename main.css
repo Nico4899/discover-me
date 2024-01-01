@@ -8,6 +8,7 @@
 
 * {
     font-size: 14px;
+    text-align: center;
 }
 
 body, html {
@@ -34,52 +35,65 @@ body, html {
 
 .stepper {
     display: flex;
-    flex-wrap: wrap;
     column-gap: 3rem;
-    margin-bottom: 15rem;
+    margin-bottom: 0.5rem;
 }
 
 .stepper .step {
-    cursor: pointer;
     position: relative;
     color: var(--neutral-gray);
 }
 
-.stepper .step.active, .step > span {
-    color: white; /* Active step color */
-}
-
-.step > span {
-    margin-right: 0.5rem;
-    padding: 0.5rem;
-    border-radius: 50%;
-    background-color: white;
+.step > p {
+    background-color: var(--neutral-gray);
     color: black;
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    row-gap: 2rem;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
 }
 
-.step:nth-of-type(1)::after,
-.step:nth-of-type(2)::after {
+.step:not(:last-child)::after {
+    content: '';
     position: absolute;
-    right: -1.5rem; /* Half the space gap to center the line */
     top: 50%;
-    transform: translateY(-50%);
-    width: 2rem;
-    height: 2px;
+    left: 50%; /* Start from the right edge of the circle */
+    width: 8rem; /* Adjust width to account for circle diameter */
+    height: 1px;
+    background-color: var(--neutral-gray);
+    z-index: 0;
+}
+
+.stepper .step.active {
+    color: white; 
+}
+
+.step.active > p {
     background-color: white;
 }
 
-.stepper .instruction {
-    width: 10rem; 
-    height: 20%;
-    background-color: var(--secondary-light-blue);
+.instruction {
+    width: 80%; 
+    height: 50%;
     padding: 1rem;
     margin-top: 0.5rem;
     border-radius: 5px;
-    color: black;
+    color: white;
+    border: 1px solid white;
+    margin-bottom: 0.5rem;
 }
 
 .navigation-buttons {
-    
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 #map {
@@ -104,7 +118,7 @@ body, html {
 #app-name {
     color: white;
     font-size: 3rem;
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
 }
 
 #back-button, #next-button {
