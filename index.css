@@ -154,21 +154,22 @@ body, html {
 
 #instagram-connect-btn {
     background-color: #E1306C;
-    width: 30%;
+    min-width: 30%;
     color: white;
     font-size: 1.125rem;
     font-weight: bold;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0.5rem;
+    padding: 0.25rem;
     border-radius: 5px;
     cursor: pointer;
+    margin: auto;
 }
 
 #instagram-placeholder {
     padding: 0.5rem;
-    margin-top: 0.5rem;
+    margin-top: 5rem;
     background-color: white;
     color: var(--primary-dark-blue);
     border: 1px solid var(--neutral-gray);

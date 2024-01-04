@@ -12,10 +12,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-        <link rel="stylesheet" type="text/css" href="./main.css">
+        <link rel="stylesheet" type="text/css" href="./index.css">
 
         <!--<script src="./config.js"></script>-->
-        <script type="module" src="./main.js"></script>
+        <script type="module" src="./index.js"></script>
     </head>
     <body>
         <div id="map-container">
@@ -33,15 +33,15 @@
             </div>
 
             <div class="instruction" id="step1-instruction">
-                <p>Search for a starting location in the world or select your current location</p>
+                <p>Search for your home town or select your current location</p>
                 <input type="text" placeholder="Enter a location" id="location-input">
-                <button id="current-location-btn">Use Current Location</button>
+                <button id="current-location-btn"><img id="location-icon" src="./images/current_location.png"></button>
             </div>
             
             <div class="instruction" id="step2-instruction">
                 <p>Connect with your Instagram profile to add your pictures to the map</p>
-                <button id="instagram-connect-btn">CONNECT <img id="instagram-logo" src="../images/instagram_icon.png"></button>
-                <div id="instagram-placeholder">Your Instagram profile info will appear here.</div>
+                <button id="instagram-connect-btn">CONNECT <img id="instagram-logo" src="./images/instagram_icon.png"></button>
+                <div id="instagram-placeholder">Your Instagram photos will appear here.</div>
             </div>
 
             <div class="instruction" id="step3-instruction">
@@ -66,6 +66,6 @@
               // Add other bootstrap parameters as needed, using camel case.
             });
         </script>
-        <script src="./components/initialization/initialization.js"></script>
+        <script src="./src/components/initialization/initialization.js"></script>
     </body>
 </html>
