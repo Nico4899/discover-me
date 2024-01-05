@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     nextButton.addEventListener('click', function() {
         if (!isLocationSet) {
-            displayErrorMessage("Please set a location before proceeding.", nextButton.id);
+            displayErrorMessage("Please set a location.", nextButton.id);
             return;
         }
 
