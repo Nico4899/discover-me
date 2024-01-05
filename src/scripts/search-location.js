@@ -1,3 +1,4 @@
+/*
 let autocomplete; 
 
 function initAutocomplete() {
@@ -27,3 +28,4 @@ document.getElementById('location-input').addEventListener('input', function(e) 
 
 // Initialize the autocomplete functionality
 google.maps.event.addDomListener(window, 'load', initAutocomplete);
+*/

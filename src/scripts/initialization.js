@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const instructions = document.querySelectorAll('.instruction');
     const backButton = document.getElementById('back-button');
     const nextButton = document.getElementById('next-button');
+    const instagramButton = document.getElementById('instagram-connect-btn');
     
     let activeStep = 0;
 
@@ -11,6 +12,8 @@ document.addEventListener("DOMContentLoaded", function() {
         if (urlParams.has('code')) {
             // Set the active step to 1
             activeStep = 1;
+            instagramButton.disabled = true;
+            instagramButton.innerHTML = 'Connected <span class="tick-icon">&#10003;</span>'; // Add a tick icon
             // Remove the code parameter from the URL
             //const newUrl = window.location.pathname;
             //window.history.pushState('object', document.title, newUrl);
