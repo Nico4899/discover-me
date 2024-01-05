@@ -1,27 +1,29 @@
 function geolocation() {
     const locationButton = document.getElementById('current-location-btn');
-    const geoError = document.getElementById('geo-error');
 
     locationButton.addEventListener("click", () => {
-        // Try HTML5 geolocation.
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 (position) => {
-                    const pos = {
+                    const userPos = {
                         lat: position.coords.latitude,
                         lng: position.coords.longitude,
                     };
-                    map.setCenter(pos);
+                    map.setCenter(userPos);
+
+                    new google.maps.Marker({
+                        position: userPos,
+                        map,
+                        title: "Your Location",
+                    });
                 },
                 () => {
-                    geoError.style.display = 'block';
-                    geoError.textContent = 'Error: The Geolocation service failed.';
+                    displayErrorMessage("Error: The Geolocation service failed.", locationButton.id);
                 }
             );
         } else {
             // Browser doesn't support Geolocation
-            geoError.style.display = 'block';
-            geoError.textContent = 'Error: Geolocation is not supported by this browser.';
+            displayErrorMessage("Error: Geolocation is not supported by this browser.", locationButton.id);
         }
     });
 }

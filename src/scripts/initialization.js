@@ -1,11 +1,12 @@
+let isLocationSet = false;
+let activeStep = 0;
+
 document.addEventListener("DOMContentLoaded", function() {
     const steps = document.querySelectorAll('.step');
     const instructions = document.querySelectorAll('.instruction');
     const backButton = document.getElementById('back-button');
     const nextButton = document.getElementById('next-button');
     const instagramButton = document.getElementById('instagram-connect-btn');
-    
-    let activeStep = 0;
 
     function updateSteps() {
         const urlParams = new URLSearchParams(window.location.search);
@@ -47,6 +48,11 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     nextButton.addEventListener('click', function() {
+        if (!isLocationSet) {
+            displayErrorMessage("Please set a location before proceeding.", nextButton.id);
+            return;
+        }
+
         if (activeStep < steps.length - 1) {
             activeStep++;
             updateSteps();
@@ -62,4 +68,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     updateSteps(); // Initialize the steps
 });
+
+window.isLocationSet = isLocationSet;
 

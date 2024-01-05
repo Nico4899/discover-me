@@ -1,5 +1,6 @@
 // Initialize and add the map
 let map;
+let marker;
 
 async function initMap() {
   // The location of New York City
@@ -18,11 +19,14 @@ async function initMap() {
     mapId: "Discover Map",
   });
 
-  new google.maps.Marker({
+  marker = new google.maps.Marker({
     position: position,
     map,
     title: "Default Location",
   });
+
+  window.map = map;
+  window.marker = marker;
 }
 
 initMap();
