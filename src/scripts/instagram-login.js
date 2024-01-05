@@ -5,5 +5,5 @@ document.getElementById('instagram-connect-btn').addEventListener('click', funct
                     '&redirect_uri=' + redirectUri + 
                     '&scope=user_profile,user_media&response_type=code';
 
-    window.open(authUrl, 'InstagramLogin', 'width=800,height=600');
+    window.open(authUrl, 'InstagramLogin');
 });
