@@ -137,7 +137,7 @@ body, html {
     cursor: default;
 }
 
-#step1-instruction input, #step1-instruction button {
+#step1-instruction input {
     padding: 0.5rem;
     margin-top: 0.5rem;
     border-radius: 5px;
@@ -148,8 +148,25 @@ body, html {
 }
 
 #step1-instruction button {
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    border-radius: 5px;
     background-color: var(--accent-green);
     border-radius: 50%;
+    cursor: pointer;
+}
+
+#location-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    display: block;
+}
+
+#geo-error {
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    color: red; 
+    display: none;
 }
 
 #instagram-connect-btn {
@@ -207,10 +224,4 @@ body, html {
 #instagram-logo {
     width: 2.25rem;
     height: 2.25rem;
-}
-
-#location-icon {
-    width: 1.55rem;
-    height: 1.5rem;
-    display: block;
 }
