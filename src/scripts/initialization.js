@@ -7,6 +7,15 @@ document.addEventListener("DOMContentLoaded", function() {
     let activeStep = 0;
 
     function updateSteps() {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('code')) {
+            // Set the active step to 1
+            activeStep = 1;
+            // Remove the code parameter from the URL
+            //const newUrl = window.location.pathname;
+            //window.history.pushState('object', document.title, newUrl);
+        }
+
         steps.forEach((step, index) => {
             if (index === activeStep) {
                 step.classList.add('active');

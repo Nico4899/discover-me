@@ -84,7 +84,6 @@ body, html {
     margin-top: 0.5rem;
     border-radius: 5px;
     color: white;
-    border: 1px solid white;
     margin-bottom: 0.5rem;
 }
 
@@ -186,12 +185,23 @@ body, html {
 }
 
 #start-journey-btn {
-    margin-top: 1rem;
+    width: 30%;
+    height: 15%;
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-top: 3rem;
     padding: 0.5rem;
     background-color: var(--accent-green);
     color: white;
     border-radius: 5px;
     cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+#start-journey-btn:hover {
+    width: 40%;
+    height: 20%;
+    font-size: 1.75rem;
 }
 
 #instagram-logo {
