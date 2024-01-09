@@ -62,9 +62,9 @@ body, html {
 .step:not(:last-child)::after {
     content: '';
     position: absolute;
-    top: 50%;
+    top: 35%;
     left: 50%; /* Start from the right edge of the circle */
-    width: 8rem; /* Adjust width to account for circle diameter */
+    width: 9rem; /* Adjust width to account for circle diameter */
     height: 1px;
     background-color: var(--neutral-gray);
     z-index: 0;

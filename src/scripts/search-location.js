@@ -1,5 +1,4 @@
 function initAutocomplete() {
-
     const input = document.getElementById('location-input');
     const options = {
         types: ['(cities)'],
@@ -30,12 +29,21 @@ function initAutocomplete() {
         const place = autocomplete.getPlace();
         updateMapLocation(place);
     });
+
+    // Add event listener for input changes
+    input.addEventListener('input', function() {
+        // Check if the input field is empty
+        if (input.value.trim() === '') {
+            isLocationSet = false;
+        } 
+    });
 }
 
 function updateMapLocation(place) {
     if (!place.geometry || !place.geometry.location) {
         // User entered the name of a Place that was not suggested and
         // pressed the Enter key, or the Place Details request failed.
+        isLocationSet = false;
         window.alert("No details available for input: '" + place.name + "'");
         return;
     }  
@@ -49,4 +57,37 @@ function updateMapLocation(place) {
     isLocationSet = true;
 }
 
+function geolocation() {
+    const locationButton = document.getElementById('current-location-btn');
+
+    locationButton.addEventListener("click", () => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const userPos = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude,
+                    };
+                    map.setCenter(userPos);
+
+                    new google.maps.Marker({
+                        position: userPos,
+                        map,
+                        title: "Your Location",
+                    });
+
+                    isLocationSet = true;
+                },
+                () => {
+                    displayErrorMessage("Error: The Geolocation service failed.", locationButton.id);
+                }
+            );
+        } else {
+            // Browser doesn't support Geolocation
+            displayErrorMessage("Error: Geolocation is not supported by this browser.", locationButton.id);
+        }
+    });
+}
+
 initAutocomplete();
+geolocation();
