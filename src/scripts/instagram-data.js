@@ -1,4 +1,4 @@
-const ACCESS_TOKEN = IGQWRQU1kybi1kSWdUcHM3aEhDUFpEMFpmSFd0REZAKekc3V09sOGVscUdxSE1BYUdXeGl1ZAXdsTWtvUmtuTEd2TjkzZAXFINTJqSGxzMnFCVmtNY0FaMU1uREstczNfQ3dKZAnBUMG1Ra3NFMmE1VDNzNHIzRWV6ZAXMZD
+const ACCESS_TOKEN = "IGQWRQU1kybi1kSWdUcHM3aEhDUFpEMFpmSFd0REZAKekc3V09sOGVscUdxSE1BYUdXeGl1ZAXdsTWtvUmtuTEd2TjkzZAXFINTJqSGxzMnFCVmtNY0FaMU1uREstczNfQ3dKZAnBUMG1Ra3NFMmE1VDNzNHIzRWV6ZAXMZD";
 
 function getAuthorizationCode() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -14,7 +14,6 @@ function requestAccessToken(authCode) {
     // Use Fetch API to make the POST request
     fetch('https://api.instagram.com/oauth/access_token', {
         method: 'POST',
-        mode: 'no-cors',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
