@@ -6,11 +6,12 @@ function getAuthorizationCode() {
 function requestAccessToken(authCode) {
     const clientId = '294516563094892';
     const clientSecret = 'bb35165898df262a61cf3c7a3f09f0f4';
-    const redirectUri = 'https://nico4899.github.io/discover-me/'; // Your redirect URI
+    const redirectUri = 'https://nico4899.github.io/discover-me/';
 
     // Use Fetch API to make the POST request
     fetch('https://api.instagram.com/oauth/access_token', {
         method: 'POST',
+        mode: 'no-cors',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
