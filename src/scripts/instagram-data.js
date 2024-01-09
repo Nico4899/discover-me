@@ -1,8 +1,11 @@
+const ACCESS_TOKEN = IGQWRQU1kybi1kSWdUcHM3aEhDUFpEMFpmSFd0REZAKekc3V09sOGVscUdxSE1BYUdXeGl1ZAXdsTWtvUmtuTEd2TjkzZAXFINTJqSGxzMnFCVmtNY0FaMU1uREstczNfQ3dKZAnBUMG1Ra3NFMmE1VDNzNHIzRWV6ZAXMZD
+
 function getAuthorizationCode() {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get('code');
 }
 
+/*
 function requestAccessToken(authCode) {
     const clientId = '294516563094892';
     const clientSecret = 'bb35165898df262a61cf3c7a3f09f0f4';
@@ -32,6 +35,7 @@ function requestAccessToken(authCode) {
     })
     .catch(error => console.error('Error:', error));
 }
+*/
 
 function fetchInstagramUserData(accessToken) {
     fetch(`https://graph.instagram.com/me?fields=id,username&access_token=${accessToken}`)
@@ -74,7 +78,11 @@ function fetchInstagramMediaData(accessToken) {
 (function init() {
     const authCode = getAuthorizationCode();
     if (authCode) {
-        requestAccessToken(authCode);
+        // requestAccessToken(authCode);
+        fetchInstagramUserData(ACCESS_TOKEN);
+        fetchInstagramMediaData(ACCESS_TOKEN);
     }
 })();
+
+
 
