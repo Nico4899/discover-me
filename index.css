@@ -188,6 +188,25 @@ body, html {
     color: var(--primary-dark-blue);
     border: 1px solid var(--neutral-gray);
     border-radius: 5px;
+    text-align: center;
+}
+
+#instagram-username {
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+#instagram-photos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.instagram-photo {
+    max-width: 100px; /* Adjust as needed */
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 #step3-instruction div {

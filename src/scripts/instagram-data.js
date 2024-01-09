@@ -1,34 +1,79 @@
-// Assuming you have a function to get the URL parameter
-function getParameterByName(name) {
-    name = name.replace(/[\[\]]/g, '\\$&');
-    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-        results = regex.exec(window.location.href);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+function getAuthorizationCode() {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('code');
 }
 
-var code = getParameterByName('code');
-if (code) {
-    fetchAccessToken(code);
+function requestAccessToken(authCode) {
+    const clientId = '294516563094892';
+    const clientSecret = 'bb35165898df262a61cf3c7a3f09f0f4';
+    const redirectUri = 'https://nico4899.github.io/discover-me/'; // Your redirect URI
+
+    // Use Fetch API to make the POST request
+    fetch('https://api.instagram.com/oauth/access_token', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: new URLSearchParams({
+            client_id: clientId,
+            client_secret: clientSecret,
+            grant_type: 'authorization_code',
+            redirect_uri: redirectUri,
+            code: authCode
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.access_token) {
+            fetchInstagramUserData(data.access_token);
+            fetchInstagramMediaData(data.access_token);
+        }
+    })
+    .catch(error => console.error('Error:', error));
 }
 
-function fetchAccessToken(code) {
-    // Make a POST request to your server to exchange the code for an access token
-}
-
-function displayInstagramPhotos() {
-    // Fetch user's media
-    fetch(`https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url&access_token=${accessToken}`)
+function fetchInstagramUserData(accessToken) {
+    fetch(`https://graph.instagram.com/me?fields=id,username&access_token=${accessToken}`)
         .then(response => response.json())
         .then(data => {
-            var container = document.getElementById('instagram-placeholder');
-            container.innerHTML = ''; // Clear existing content
-
-            data.data.forEach(media => {
-                var img = document.createElement('img');
-                img.src = media.media_url;
-                container.appendChild(img);
-            });
-        });
+            if (data.username) {
+                const usernameElement = document.createElement('div');
+                usernameElement.textContent = `Instagram Username: ${data.username}`;
+                usernameElement.id = 'instagram-username';
+                document.getElementById('instagram-placeholder').appendChild(usernameElement);
+            }
+        })
+        .catch(error => console.error('Error:', error));
 }
+
+
+function fetchInstagramMediaData(accessToken) {
+    fetch(`https://graph.instagram.com/me/media?fields=id,media_type,media_url,username,timestamp&access_token=${accessToken}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.data) {
+                const photosContainer = document.createElement('div');
+                photosContainer.id = 'instagram-photos';
+                data.data.forEach(media => {
+                    if (media.media_type === 'IMAGE' || media.media_type === 'CAROUSEL_ALBUM') {
+                        const img = document.createElement('img');
+                        img.src = media.media_url;
+                        img.alt = 'Instagram Photo';
+                        img.className = 'instagram-photo';
+                        photosContainer.appendChild(img);
+                    }
+                });
+                document.getElementById('instagram-placeholder').appendChild(photosContainer);
+            }
+        })
+        .catch(error => console.error('Error:', error));
+}
+
+
+(function init() {
+    const authCode = getAuthorizationCode();
+    if (authCode) {
+        requestAccessToken(authCode);
+    }
+})();
+

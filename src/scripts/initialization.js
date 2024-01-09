@@ -1,3 +1,4 @@
+let isLocationSet = false;
 let activeStep = 0;
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -67,4 +68,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     updateSteps(); // Initialize the steps
 });
+
+window.isLocationSet = isLocationSet;
 
