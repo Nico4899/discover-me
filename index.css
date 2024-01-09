@@ -70,6 +70,10 @@ body, html {
     z-index: 0;
 }
 
+.step:nth-child(2) {
+    right: 2%;
+}
+
 .stepper .step.active {
     color: white; 
 }

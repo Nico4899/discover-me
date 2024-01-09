@@ -1,5 +1,6 @@
+const input = document.getElementById('location-input');
+
 function initAutocomplete() {
-    const input = document.getElementById('location-input');
     const options = {
         types: ['(cities)'],
         fields: ["address_components", "geometry", "icon", "name"]
@@ -37,13 +38,24 @@ function initAutocomplete() {
             isLocationSet = false;
         } 
     });
+
+    // Load saved location state from local storage
+    const savedLocation = localStorage.getItem('location');
+    const locationSet = localStorage.getItem('isLocationSet') === 'true';
+
+    if (savedLocation && locationSet) {
+        const locationObj = JSON.parse(savedLocation);
+        updateMapLocation({ geometry: { location: new google.maps.LatLng(locationObj) } });
+    }
 }
 
 function updateMapLocation(place) {
     if (!place.geometry || !place.geometry.location) {
-        // User entered the name of a Place that was not suggested and
-        // pressed the Enter key, or the Place Details request failed.
+
         isLocationSet = false;
+        localStorage.removeItem('location');
+        localStorage.setItem('isLocationSet', false);
+
         window.alert("No details available for input: '" + place.name + "'");
         return;
     }  
@@ -55,6 +67,9 @@ function updateMapLocation(place) {
     marker.setTitle("Home Town");
 
     isLocationSet = true;
+
+    localStorage.setItem('location', JSON.stringify(place.geometry.location.toJSON()));
+    localStorage.setItem('isLocationSet', true);
 }
 
 function geolocation() {
@@ -68,8 +83,11 @@ function geolocation() {
                         lat: position.coords.latitude,
                         lng: position.coords.longitude,
                     };
-                    map.setCenter(userPos);
 
+                    // Get city from coordinates and update input field
+                    getCityFromCoordinates(userPos.lat, userPos.lng);
+
+                    map.setCenter(userPos);
                     new google.maps.Marker({
                         position: userPos,
                         map,
@@ -88,6 +106,36 @@ function geolocation() {
         }
     });
 }
+
+function getCityFromCoordinates(lat, lng) {
+    const geocoder = new google.maps.Geocoder();
+    const latlng = { lat, lng };
+
+    geocoder.geocode({ location: latlng }, (results, status) => {
+        if (status === 'OK') {
+            if (results[0]) {
+                const addressComponents = results[0].address_components;
+                const cityComponent = addressComponents.find(component => component.types.includes('locality'));
+                const countryComponent = addressComponents.find(component => component.types.includes('country'));
+
+                let locationString = '';
+                if (cityComponent) {
+                    locationString += cityComponent.long_name;
+                }
+                if (countryComponent) {
+                    locationString += (locationString ? ', ' : '') + countryComponent.long_name;
+                }
+
+                input.value = locationString;
+            } else {
+                window.alert('No results found');
+            }
+        } else {
+            window.alert('Geocoder failed due to: ' + status);
+        }
+    });
+}
+
 
 initAutocomplete();
 geolocation();
